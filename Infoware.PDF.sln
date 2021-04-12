@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31129.286
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1433
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infoware.PDF", "Infoware.PDF.csproj", "{D639D113-DB66-42AB-86F5-D16E3CE2043D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infoware.PDF", "Infoware.PDF\Infoware.PDF.csproj", "{6E857895-AC9E-4FFD-A123-CC11CF931269}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D639D113-DB66-42AB-86F5-D16E3CE2043D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D639D113-DB66-42AB-86F5-D16E3CE2043D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D639D113-DB66-42AB-86F5-D16E3CE2043D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D639D113-DB66-42AB-86F5-D16E3CE2043D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E857895-AC9E-4FFD-A123-CC11CF931269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E857895-AC9E-4FFD-A123-CC11CF931269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E857895-AC9E-4FFD-A123-CC11CF931269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E857895-AC9E-4FFD-A123-CC11CF931269}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
