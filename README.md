@@ -1,6 +1,8 @@
 # Infoware.PDF
  PDFSharpNetStandard2 Fluent Wrapper
 
+[![NuGet Badge](https://buildstats.info/nuget/Infoware.PDF)](https://www.nuget.org/packages/Infoware.PDF/)
+
 Usage:
 ```csharp
         static readonly Style NormalStyle = new(new("Verdana", 7, XFontStyle.Regular), XBrushes.Black);
