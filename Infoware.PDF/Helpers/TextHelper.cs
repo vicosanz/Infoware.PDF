@@ -20,6 +20,18 @@ namespace Infoware.PDF.Helpers
 
         public static IGenerator GetTextLines(this IGenerator generator, string text, double width, out int textLines)
         {
+            var splitted = text.Split('\n').ToList();
+            textLines = 0;
+            foreach (var line in splitted)
+            {
+                textLines += GetLines(generator, line, width);
+            }
+            return generator;
+        }
+
+        private static int GetLines(IGenerator generator, string text, double width)
+        {
+            int textLines;
             var splitted = text.Split(' ').ToList();
             textLines = 0;
 
@@ -39,7 +51,7 @@ namespace Infoware.PDF.Helpers
                 }
             }
             textLines++;
-            return generator;
+            return textLines;
         }
 
         public static IGenerator GetTextHeight(this IGenerator generator, string text, double width, out double textHeight)
