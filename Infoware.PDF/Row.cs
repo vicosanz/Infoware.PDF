@@ -24,10 +24,18 @@ namespace Infoware.PDF
             _rowIndex = rowIndex;
         }
 
-        public void AddCell(string text, XParagraphAlignment alignment = XParagraphAlignment.Center)
+        public void AddCell(string text, XParagraphAlignment alignment = XParagraphAlignment.Center, bool autoGrowHeight = false)
         {
             _cellIndex++;
             double width = _table.ColumnsWidth[_cellIndex];
+            if (autoGrowHeight)
+            {
+                _generator.GetTextHeight(text, width - 4, out double textHeight);
+                if (textHeight > _height)
+                {
+                    _height = textHeight;
+                }
+            }
             if (_table.DrawBorders)
             {
                 _generator.Rectangle(new XRect(_x, _y, width, _height));

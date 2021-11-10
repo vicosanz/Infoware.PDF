@@ -1,5 +1,6 @@
 ﻿using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
+using System.Linq;
 
 namespace Infoware.PDF.Helpers
 {
@@ -14,6 +15,38 @@ namespace Infoware.PDF.Helpers
         public static IGenerator WithStyle(this IGenerator generator, Style style)
         {
             generator.CurrentStyle = style;
+            return generator;
+        }
+
+        public static IGenerator GetTextLines(this IGenerator generator, string text, double width, out int textLines)
+        {
+            var splitted = text.Split(' ').ToList();
+            textLines = 0;
+
+            var parts = 0;
+            while (parts < splitted.Count)
+            {
+                var lineText = string.Join(' ', splitted.Take(parts + 1));
+                if (generator.Draw.MeasureString(lineText, generator.CurrentStyle.Font).Width > width)
+                {
+                    splitted = splitted.Skip(parts).ToList();
+                    textLines++;
+                    parts = 0;
+                }
+                else
+                {
+                    parts++;
+                }
+            }
+            textLines++;
+            return generator;
+        }
+
+        public static IGenerator GetTextHeight(this IGenerator generator, string text, double width, out double textHeight)
+        {
+            var height = generator.Draw.MeasureString("x", generator.CurrentStyle.Font).Height +2;
+            generator.GetTextLines(text, width, out int textLines);
+            textHeight = height * textLines;
             return generator;
         }
 

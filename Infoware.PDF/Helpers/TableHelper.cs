@@ -47,11 +47,11 @@ namespace Infoware.PDF.Helpers
         /// <param name="generator">The generator</param>
         /// <param name="text">Inside Text</param>
         /// <returns>The generator</returns>
-        public static IGenerator AddCell(this IGenerator generator, string text, XParagraphAlignment alignment = XParagraphAlignment.Center)
+        public static IGenerator AddCell(this IGenerator generator, string text, XParagraphAlignment alignment = XParagraphAlignment.Center, bool autoGrowHeight = false)
         {
             if (generator.Expression)
             {
-                generator.CurrentTable.CurrentRow.AddCell(text, alignment);
+                generator.CurrentTable.CurrentRow.AddCell(text, alignment, autoGrowHeight);
             }
             return generator;
         }
