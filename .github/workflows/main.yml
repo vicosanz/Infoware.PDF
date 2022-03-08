@@ -19,7 +19,8 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
-
+      - name: Pack
+        run: dotnet pack --no-build -c Release Infoware.PDF/Infoware.PDF.csproj --include-symbols -p:SymbolPackageFormat=snupkg -o .
       # Publish
       - name: publish on version change
         run: dotnet nuget push *.nupkg --api-key ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate -n 1
