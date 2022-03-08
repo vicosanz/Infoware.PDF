@@ -9,8 +9,8 @@
     <RepositoryUrl>https://github.com/vicosanz/Infoware.PDF</RepositoryUrl>
     <Authors>Victor Sanchez</Authors>
     <Company>Infoware Soluciones</Company>
-    <Version>1.0.4</Version>
-    <PackageReleaseNotes>Added Draw Image from file</PackageReleaseNotes>
+    <Version>1.0.5</Version>
+    <PackageReleaseNotes>Added Draw Image from stream</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

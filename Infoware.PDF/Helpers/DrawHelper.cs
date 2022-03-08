@@ -1,5 +1,6 @@
 ﻿using PdfSharp.Drawing;
 using PdfSharp.Drawing.BarCodes;
+using System.IO;
 
 namespace Infoware.PDF.Helpers
 {
@@ -166,5 +167,37 @@ namespace Infoware.PDF.Helpers
             return generator;
         }
 
+        /// <summary>
+        /// Draw an Image from file
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <param name="imageStream">Image Stream</param>
+        /// <param name="X">X position</param>
+        /// <param name="Y">Y position</param>
+        /// <param name="xSize">Size</param>
+        /// <param name="stretch">True if the image fill the rectangle, False if the image must respect ratio</param>
+        /// <returns>The generator</returns>
+        public static IGenerator DrawImage(this IGenerator generator, Stream imageStream, double X, double Y, XSize xSize, bool stretch)
+        {
+            if (generator.Expression)
+            {
+                var image = XImage.FromStream(imageStream);
+                if (!stretch)
+                {
+                    //convert pixel to point
+                    double width = image.PixelWidth * 72 / image.HorizontalResolution;
+                    double height = image.PixelHeight * 72 / image.HorizontalResolution;
+
+                    double ratioWidth = xSize.Width / width;
+                    double ratioHeight = xSize.Height / height;
+                    double ratio = ratioWidth < ratioHeight ? ratioWidth : ratioHeight;
+                    xSize.Width = width * ratio;
+                    xSize.Height = height * ratio;
+                }
+
+                generator.Draw.DrawImage(image, X, Y, xSize.Width, xSize.Height);
+            }
+            return generator;
+        }
     }
 }
