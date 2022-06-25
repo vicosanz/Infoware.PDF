@@ -1,17 +1,17 @@
 ﻿using Infoware.PDF.Helpers;
-using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Drawing.Layout;
 
 namespace Infoware.PDF
 {
     public class Row
     {
-        private IGenerator _generator;
-        private Table _table;
+        private readonly IGenerator _generator;
+        private readonly Table _table;
         private double _x;
-        private double _y;
+        private readonly double _y;
         private double _height;
-        private int _rowIndex;
+        private readonly int _rowIndex;
         private int _cellIndex = -1;
 
         public Row(IGenerator generator, Table table, int rowIndex, double X, double Y, double height)

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PdfSharp.Drawing.Layout;
+using PdfSharpCore.Drawing.Layout;
 
 namespace Infoware.PDF.Helpers
 {

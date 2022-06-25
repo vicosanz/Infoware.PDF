@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Infoware.PDF;
 using Infoware.PDF.Helpers;
-using PdfSharp.Pdf;
+using PdfSharpCore.Pdf;
 
 namespace Test
 {

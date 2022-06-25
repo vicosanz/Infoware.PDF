@@ -4,7 +4,7 @@ namespace Infoware.PDF
 {
     public class Table
     {
-        private IGenerator _generator;
+        private readonly IGenerator _generator;
         private readonly double _x;
 
         public bool DrawBorders { get; init; } = true;

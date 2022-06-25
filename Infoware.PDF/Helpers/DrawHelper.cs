@@ -1,5 +1,5 @@
-﻿using PdfSharp.Drawing;
-using PdfSharp.Drawing.BarCodes;
+﻿using PdfSharpCore.Drawing;
+using PdfSharpCore.Drawing.BarCodes;
 using System.IO;
 
 namespace Infoware.PDF.Helpers
@@ -181,7 +181,7 @@ namespace Infoware.PDF.Helpers
         {
             if (generator.Expression)
             {
-                var image = XImage.FromStream(imageStream);
+                var image = XImage.FromStream(() => imageStream);
                 if (!stretch)
                 {
                     //convert pixel to point

@@ -1,5 +1,5 @@
-﻿using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
+﻿using PdfSharpCore.Drawing;
+using PdfSharpCore.Drawing.Layout;
 using System.Linq;
 
 namespace Infoware.PDF.Helpers

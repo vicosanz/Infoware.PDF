@@ -1,4 +1,4 @@
-﻿using PdfSharp.Drawing;
+﻿using PdfSharpCore.Drawing;
 
 namespace Infoware.PDF
 {

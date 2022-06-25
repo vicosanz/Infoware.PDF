@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
 
 namespace Infoware.PDF
 {
     public class Generator : IGenerator, IDisposable
     {
         private readonly PdfDocument _document;
-        private List<GeneratorPage> _pages = new();
+        private readonly List<GeneratorPage> _pages = new();
         private GeneratorPage _currentPage = null;
         private Style _currentStyle = new(new("Verdana", 7, XFontStyle.Regular), XBrushes.Black);
         private XPen _currentPen = new(XColors.Black, 1);

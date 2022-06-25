@@ -1,6 +1,6 @@
 ﻿using System;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
 
 namespace Infoware.PDF
 {
@@ -68,6 +68,16 @@ namespace Infoware.PDF
         public bool Equals(GeneratorPage other)
         {
             return other?.Id == Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as GeneratorPage);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
