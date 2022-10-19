@@ -30,12 +30,21 @@ namespace Test
                             .AddCell("Descripción")
                             .AddCell("Descripción2");
 
-                generador.AddRow()
+                generador
+                .AddRowAutoHeight()
                     .AddCell("1")
                     .AddCell("1")
                     .AddCell("1")
-                    .AddCell("Elaboración   de\n Planificación de Actividades Operativas y sdasd asd ada asd asd asdbla bla\nbla otro otro\notro otro\notro otro otro otro\notro otro otro otro ultimo", autoGrowHeight: true)
-                    .AddCell("", autoGrowHeight: true);
+                    .AddCell("Elaboración   de\n Planificación de Actividades Operativas y sdasd asd ada asd asd asdbla bla\nbla otro otro\notro otro\notro otro otro otro\notro otro otro otro ultimo")
+                    .AddCell("")
+                .DrawRowAutoHeight()
+                .AddRowAutoHeight()
+                    .AddCell("1")
+                    .AddCell("1")
+                    .AddCell("1")
+                    .AddCell("Elaboración   de\n Planificación de Actividades Operativas y sdasd asd ada asd asd asdbla bla\nbla otro otro\notro otro\notro otro otro otro\notro otro otro otro ultimo")
+                    .AddCell("")
+                   .DrawRowAutoHeight();
 
             }
             document.Save(@"d:\test\example.pdf");

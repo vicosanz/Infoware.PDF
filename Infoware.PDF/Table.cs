@@ -28,7 +28,23 @@ namespace Infoware.PDF
             var rowHeight = height ?? DefaultRowHeight;
             _generator.CheckEndOfPage(rowHeight);
             _rowIndex++;
-            CurrentRow = new Row(_generator, this, _rowIndex, _x, _generator.PointerY, rowHeight);
+            CurrentRow = new Row(_generator, this, _rowIndex, _x, _generator.PointerY, rowHeight, false);
+            _generator.PointerY += rowHeight;
+            return _generator;
+        }
+
+        public IGenerator AddRowAutoHeight()
+        {
+            CurrentRow = new Row(_generator, this, _rowIndex, _x, _generator.PointerY, DefaultRowHeight, true);
+            return _generator;
+        }
+
+        public IGenerator DrawRowAutoHeight()
+        {
+            var rowHeight = CurrentRow.Height;
+            _generator.CheckEndOfPage(rowHeight);
+            _rowIndex++;
+            CurrentRow.DrawCells();
             _generator.PointerY += rowHeight;
             return _generator;
         }

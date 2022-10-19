@@ -42,16 +42,44 @@ namespace Infoware.PDF.Helpers
         }
 
         /// <summary>
+        /// Create a new Row for the current Table with Auto Height
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <returns>The generator</returns>
+        public static IGenerator AddRowAutoHeight(this IGenerator generator)
+        {
+            if (generator.Expression)
+            {
+                generator.CurrentTable.AddRowAutoHeight();
+            }
+            return generator;
+        }
+
+        /// <summary>
+        /// Draw a new Row for the current Table with Auto Height
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <returns>The generator</returns>
+        public static IGenerator DrawRowAutoHeight(this IGenerator generator)
+        {
+            if (generator.Expression)
+            {
+                generator.CurrentTable.DrawRowAutoHeight();
+            }
+            return generator;
+        }
+
+        /// <summary>
         /// Create a new Row for the current Row
         /// </summary>
         /// <param name="generator">The generator</param>
         /// <param name="text">Inside Text</param>
         /// <returns>The generator</returns>
-        public static IGenerator AddCell(this IGenerator generator, string text, XParagraphAlignment alignment = XParagraphAlignment.Center, bool autoGrowHeight = false)
+        public static IGenerator AddCell(this IGenerator generator, string text, XParagraphAlignment alignment = XParagraphAlignment.Center)
         {
             if (generator.Expression)
             {
-                generator.CurrentTable.CurrentRow.AddCell(text, alignment, autoGrowHeight);
+                generator.CurrentTable.CurrentRow.AddCell(text, alignment);
             }
             return generator;
         }
