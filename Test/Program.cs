@@ -22,12 +22,12 @@ namespace Test
                     //.DrawImage(@"C:\Users\vicos\Pictures\Camera Roll\WIN_20210206_16_36_37_Pro.jpg", 100, 400, new PdfSharp.Drawing.XSize(300, 300), false);
 
                 generador
-                    .WithTable(30, 450, new List<double>() { 40, 40, 40, 140, 140 }, defaultRowHeight: 25)
+                    .WithTable(30, 480, new List<double>() { 40, 40, 40, 40, 140 }, defaultRowHeight: 25)
                         .AddRow()
                             .AddCell("Cod.\nPrincipal")
                             .AddCell("Cod.\nAuxiliar")
                             .AddCell("Cantidad")
-                            .AddCell("Descripción")
+                            .AddCell("Descripciónzasdadasdasdasdasdasdasdasdsadsada asdasdasd asasdd asdd as")
                             .AddCell("Descripción2");
 
                 generador

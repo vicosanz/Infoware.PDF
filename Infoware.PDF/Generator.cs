@@ -76,7 +76,7 @@ namespace Infoware.PDF
             if (_currentPage.PointY + heightNewElement > _currentPage.Page.Height - _marginBottom)
             {
                 AddPage();
-                _currentPage.PointY += heightNewElement;
+                _currentPage.ResetPointY();
             }
         }
 

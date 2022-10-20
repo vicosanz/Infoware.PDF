@@ -52,7 +52,6 @@ namespace Infoware.PDF
                     Text = text,
                     Alignment = alignment,
                     X = _x,
-                    Y = _y,
                     Width = width,
                 });
             }
@@ -78,7 +77,6 @@ namespace Infoware.PDF
                     Text = (valor ?? 0).ToString("0.00"),
                     Alignment = XParagraphAlignment.Right,
                     X = _x,
-                    Y = _y,
                     Width = width,
                 });
             }
@@ -104,7 +102,6 @@ namespace Infoware.PDF
                     Text = (valor ?? 0).ToString(),
                     Alignment = XParagraphAlignment.Right,
                     X = _x,
-                    Y = _y,
                     Width = width,
                 });
             }
@@ -125,9 +122,9 @@ namespace Infoware.PDF
             {
                 if (_table.DrawBorders)
                 {
-                    _generator.Rectangle(new XRect(cell.X, cell.Y, cell.Width, Height));
+                    _generator.Rectangle(new XRect(cell.X, _generator.PointerY, cell.Width, Height));
                 }
-                _generator.WriteInBox(cell.Text, cell.Alignment, cell.X + 1, cell.Y + 1, cell.Width - 2, Height - 2);
+                _generator.WriteInBox(cell.Text, cell.Alignment, cell.X + 1, _generator.PointerY + 1, cell.Width - 2, Height - 2);
             }
         }
     }
