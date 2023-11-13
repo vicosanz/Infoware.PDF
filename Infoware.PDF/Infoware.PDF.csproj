@@ -9,12 +9,12 @@
     <RepositoryUrl>https://github.com/vicosanz/Infoware.PDF</RepositoryUrl>
     <Authors>Victor Sanchez</Authors>
     <Company>Infoware Soluciones</Company>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <PackageReleaseNotes>Added Draw Image from stream</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PdfSharpCore" Version="1.3.32" />
+    <PackageReference Include="PdfSharpCore" Version="1.3.62" />
   </ItemGroup>
 
 </Project>

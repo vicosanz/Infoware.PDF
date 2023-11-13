@@ -22,6 +22,16 @@ namespace Test
                     //.DrawImage(@"C:\Users\vicos\Pictures\Camera Roll\WIN_20210206_16_36_37_Pro.jpg", 100, 400, new PdfSharp.Drawing.XSize(300, 300), false);
 
                 generador
+                    .WriteBarCode39("12341213", 10, 10, new PdfSharpCore.Drawing.XSize()
+                    {
+                        Height = 100,
+                        Width = 200,
+                    })
+                    .WriteBarCode25Interleaved("12341213", 10, 150, new PdfSharpCore.Drawing.XSize()
+                    {
+                        Height = 100,
+                        Width = 200,
+                    })
                     .WithTable(30, 480, new List<double>() { 40, 40, 40, 40, 140 }, defaultRowHeight: 25)
                         .AddRow()
                             .AddCell("Cod.\nPrincipal")
@@ -47,7 +57,7 @@ namespace Test
                    .DrawRowAutoHeight();
 
             }
-            document.Save(@"d:\test\example.pdf");
+            document.Save(@"c:\test\example.pdf");
             Console.WriteLine("Hello World!");
         }
     }

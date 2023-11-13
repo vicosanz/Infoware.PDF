@@ -135,6 +135,29 @@ namespace Infoware.PDF.Helpers
         }
 
         /// <summary>
+        /// Draw a BarCode25Interleaved
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <param name="text">Text to code</param>
+        /// <param name="X">X position</param>
+        /// <param name="Y">Y position</param>
+        /// <param name="xSize">Size</param>
+        /// <returns>The generator</returns>
+        public static IGenerator WriteBarCode25Interleaved(this IGenerator generator, string text, double X, double Y, XSize xSize)
+        {
+            if (generator.Expression)
+            {
+                Code2of5Interleaved barcode = new(text, xSize)
+                {
+                    StartChar = '*',
+                    EndChar = '*'
+                };
+                generator.Draw.DrawBarCode(barcode, XBrushes.Black, new XPoint(X, Y));
+            }
+            return generator;
+        }
+
+        /// <summary>
         /// Draw an Image from file
         /// </summary>
         /// <param name="generator">The generator</param>
