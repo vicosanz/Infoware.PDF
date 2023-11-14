@@ -1,5 +1,7 @@
-﻿using PdfSharpCore.Drawing;
+﻿using Infoware.PDF.Barcodes;
+using PdfSharpCore.Drawing;
 using PdfSharpCore.Drawing.BarCodes;
+using System;
 using System.IO;
 
 namespace Infoware.PDF.Helpers
@@ -147,12 +149,73 @@ namespace Infoware.PDF.Helpers
         {
             if (generator.Expression)
             {
+                if (text.Length % 2 == 1)
+                {
+                    throw new Exception("Code 2 of 5 only render pairs of numbers");
+                }
                 Code2of5Interleaved barcode = new(text, xSize)
                 {
                     StartChar = '*',
                     EndChar = '*'
                 };
                 generator.Draw.DrawBarCode(barcode, XBrushes.Black, new XPoint(X, Y));
+            }
+            return generator;
+        }
+
+        /// <summary>
+        /// Draw a BarCode128
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <param name="text">Text to code</param>
+        /// <param name="X">X position</param>
+        /// <param name="Y">Y position</param>
+        /// <param name="xSize">Size</param>
+        /// <returns>The generator</returns>
+        public static IGenerator WriteBarCode128A(this IGenerator generator, string text, double X, double Y, XSize xSize)
+        {
+            if (generator.Expression)
+            {
+                Code128 barcode = new(text, xSize, CodeDirection.LeftToRight, Code_128_Code_Types.CodeA);
+                barcode.Render(generator.Draw, XBrushes.Black, null, new XPoint(X, Y));
+            }
+            return generator;
+        }
+
+        /// <summary>
+        /// Draw a BarCode128
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <param name="text">Text to code</param>
+        /// <param name="X">X position</param>
+        /// <param name="Y">Y position</param>
+        /// <param name="xSize">Size</param>
+        /// <returns>The generator</returns>
+        public static IGenerator WriteBarCode128B(this IGenerator generator, string text, double X, double Y, XSize xSize)
+        {
+            if (generator.Expression)
+            {
+                Code128 barcode = new(text, xSize, CodeDirection.LeftToRight, Code_128_Code_Types.CodeB);
+                barcode.Render(generator.Draw, XBrushes.Black, null, new XPoint(X, Y));
+            }
+            return generator;
+        }
+
+        /// <summary>
+        /// Draw a BarCode128
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <param name="text">Text to code</param>
+        /// <param name="X">X position</param>
+        /// <param name="Y">Y position</param>
+        /// <param name="xSize">Size</param>
+        /// <returns>The generator</returns>
+        public static IGenerator WriteBarCode128C(this IGenerator generator, string text, double X, double Y, XSize xSize)
+        {
+            if (generator.Expression)
+            {
+                Code128 barcode = new(text, xSize, CodeDirection.LeftToRight, Code_128_Code_Types.CodeC);
+                barcode.Render(generator.Draw, XBrushes.Black, null, new XPoint(X, Y));
             }
             return generator;
         }

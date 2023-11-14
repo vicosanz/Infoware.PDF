@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Infoware.PDF;
 using Infoware.PDF.Helpers;
+using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
 
 namespace Test
@@ -27,11 +28,9 @@ namespace Test
                         Height = 100,
                         Width = 200,
                     })
-                    .WriteBarCode25Interleaved("12341213", 10, 150, new PdfSharpCore.Drawing.XSize()
-                    {
-                        Height = 100,
-                        Width = 200,
-                    })
+                    //.WriteBarCode128A("01", 10, 150, new XSize(50, 40))
+                    //.WriteBarCode128B("01", 10, 190, new XSize(50, 40))
+                    .WriteBarCode128C("11111", 10, 230, new XSize(300, 40))
                     .WithTable(30, 480, new List<double>() { 40, 40, 40, 40, 140 }, defaultRowHeight: 25)
                         .AddRow()
                             .AddCell("Cod.\nPrincipal")
