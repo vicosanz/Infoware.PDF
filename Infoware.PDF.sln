@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{A21226
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infoware.PDF.EmbeddedFonts", "Infoware.PDF.EmbeddedFonts\Infoware.PDF.EmbeddedFonts.csproj", "{AD797436-506E-4363-854D-EFB79CCD6DE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{503A39A1-ADA3-4C53-969D-3DCB17CFFC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{503A39A1-ADA3-4C53-969D-3DCB17CFFC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{503A39A1-ADA3-4C53-969D-3DCB17CFFC95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD797436-506E-4363-854D-EFB79CCD6DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD797436-506E-4363-854D-EFB79CCD6DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD797436-506E-4363-854D-EFB79CCD6DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD797436-506E-4363-854D-EFB79CCD6DE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

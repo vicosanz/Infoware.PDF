@@ -5,6 +5,7 @@ using Infoware.PDF;
 using Infoware.PDF.Helpers;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
+using PdfSharpCore.Utils;
 
 namespace Test
 {
@@ -13,6 +14,7 @@ namespace Test
         static void Main()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            FontResolverExtensions.SetEmbeddedFontResolver();
 
             PdfDocument document = new();
             using (var generador = Generator.Instance(document))

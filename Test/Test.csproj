@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infoware.PDF.EmbeddedFonts\Infoware.PDF.EmbeddedFonts.csproj" />
     <ProjectReference Include="..\Infoware.PDF\Infoware.PDF.csproj" />
   </ItemGroup>
 

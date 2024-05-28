@@ -2,7 +2,8 @@
   "solution": {
     "path": "Infoware.PDF.sln",
     "projects": [
-      "Infoware.PDF\\Infoware.PDF.csproj"
+      "Infoware.PDF\\Infoware.PDF.csproj",
+      "Infoware.PDF\\Infoware.PDF.EmbeddedFonts.csproj"
     ]
   }
 }
