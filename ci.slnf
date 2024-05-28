@@ -3,7 +3,7 @@
     "path": "Infoware.PDF.sln",
     "projects": [
       "Infoware.PDF\\Infoware.PDF.csproj",
-      "Infoware.PDF\\Infoware.PDF.EmbeddedFonts.csproj"
+      "Infoware.PDF.EmbeddedFonts\\Infoware.PDF.EmbeddedFonts.csproj"
     ]
   }
 }
