@@ -15,7 +15,7 @@ namespace Test
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             FontResolverExtensions.SetEmbeddedFontResolver();
-
+            
             PdfDocument document = new();
             using (var generador = Generator.Instance(document))
             {
@@ -25,6 +25,7 @@ namespace Test
                     //.DrawImage(@"C:\Users\vicos\Pictures\Camera Roll\WIN_20210206_16_36_37_Pro.jpg", 100, 400, new PdfSharp.Drawing.XSize(300, 300), false);
 
                 generador
+                    //.DrawImage(logoStream, 30, 25, new XSize(260, 135), false)
                     .WriteBarCode39("12341213", 10, 10, new PdfSharpCore.Drawing.XSize()
                     {
                         Height = 100,

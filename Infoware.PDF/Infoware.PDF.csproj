@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/vicosanz/Infoware.PDF</RepositoryUrl>
     <Authors>Victor Sanchez</Authors>
     <Company>Infoware Soluciones</Company>
-    <Version>1.0.15</Version>
+    <Version>1.0.16</Version>
     <PackageReleaseNotes>Added Draw Image from stream</PackageReleaseNotes>
   </PropertyGroup>
 
@@ -17,7 +17,7 @@
     <PackageReference Include="PdfSharpCore" Version="1.3.63" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
     <PackageReference Include="SixLabors.Fonts" Version="1.0.0" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
   </ItemGroup>
 
 </Project>
