@@ -41,7 +41,7 @@ namespace Infoware.PDF.Helpers
                 var lineText = string.Join(' ', splitted.Take(parts + 1));
                 if (generator.Draw.MeasureString(lineText, generator.CurrentStyle.Font).Width > width)
                 {
-                    splitted = splitted.Skip(parts+1).ToList();
+                    splitted = [.. splitted.Skip(parts+1)];
                     textLines++;
                     parts = 0;
                 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Infoware.PDF;
+using Infoware.PDF.EmbeddedFonts;
 using Infoware.PDF.Helpers;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
-using PdfSharpCore.Utils;
 
 namespace Test
 {
@@ -34,12 +34,12 @@ namespace Test
                     //.WriteBarCode128A("01", 10, 150, new XSize(50, 40))
                     //.WriteBarCode128B("01", 10, 190, new XSize(50, 40))
                     .WriteBarCode128C("11111", 10, 230, new XSize(300, 40))
-                    .WithTable(30, 480, new List<double>() { 40, 40, 40, 40, 140 }, defaultRowHeight: 25)
+                    .WithTable(30, 480, [40, 40, 40, 40, 140], defaultRowHeight: 25)
                         .AddRow()
-                            .AddCell("Cod.\nPrincipal")
+                            .AddCell(" Cod   1.\nPr")
                             .AddCell("Cod.\nAuxiliar")
                             .AddCell("Cantidad")
-                            .AddCell("Descripciónzasdadasdasdasdasdasdasdasdsadsada asdasdasd asasdd asdd as")
+                            .AddCell("DescripciónXXXX asdasdasd asasdd asdd as")
                             .AddCell("Descripción2");
 
                 generador

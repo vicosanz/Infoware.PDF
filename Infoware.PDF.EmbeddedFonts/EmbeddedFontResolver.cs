@@ -3,7 +3,7 @@ using PdfSharpCore.Fonts;
 using PdfSharpCore.Internal;
 using SixLabors.Fonts;
 
-namespace PdfSharpCore.Utils;
+namespace Infoware.PDF.EmbeddedFonts;
 
 public static class FontResolverExtensions
 {
@@ -94,7 +94,7 @@ public class EmbeddedFontResolver : IFontResolver
 
     private static FontFamilyModel DeserializeFontFamily(string fontFamilyName, IEnumerable<FontFileInfo> fontList)
     {
-        FontFamilyModel fontFamilyModel = new FontFamilyModel
+        FontFamilyModel fontFamilyModel = new()
         {
             Name = fontFamilyName
         };
@@ -119,11 +119,11 @@ public class EmbeddedFontResolver : IFontResolver
 
     public virtual byte[] GetFont(string faceFileName)
     {
-        using MemoryStream memoryStream = new MemoryStream();
+        using MemoryStream memoryStream = new();
         string text = "";
         try
         {
-            text = SSupportedFonts.ToList().First((string x) => x.ToLower().Contains(Path.GetFileName(faceFileName).ToLower()));
+            text = SSupportedFonts.ToList().First(x => x.Contains(Path.GetFileName(faceFileName), StringComparison.CurrentCultureIgnoreCase));
             using Stream stream = File.OpenRead(text);
             stream.CopyTo(memoryStream);
             memoryStream.Position = 0L;
@@ -136,7 +136,7 @@ public class EmbeddedFontResolver : IFontResolver
         }
     }
 
-    public virtual FontResolverInfo ResolveTypeface(string familyName, bool isBold, bool isItalic)
+    public virtual FontResolverInfo? ResolveTypeface(string familyName, bool isBold, bool isItalic)
     {
         if (InstalledFonts.Count == 0)
         {
@@ -145,7 +145,6 @@ public class EmbeddedFontResolver : IFontResolver
 
         if (InstalledFonts.TryGetValue(familyName.ToLower(), out var value))
         {
-            string value4;
             if (isBold && isItalic)
             {
                 if (value.FontFiles.TryGetValue(XFontStyle.BoldItalic, out var value2))
@@ -160,7 +159,7 @@ public class EmbeddedFontResolver : IFontResolver
                     return new FontResolverInfo(Path.GetFileName(value3));
                 }
             }
-            else if (isItalic && value.FontFiles.TryGetValue(XFontStyle.Italic, out value4))
+            else if (isItalic && value.FontFiles.TryGetValue(XFontStyle.Italic, out var value4))
             {
                 return new FontResolverInfo(Path.GetFileName(value4));
             }

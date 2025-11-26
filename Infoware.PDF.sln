@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infoware.PDF", "Infoware.PDF\Infoware.PDF.csproj", "{6E857895-AC9E-4FFD-A123-CC11CF931269}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{A21226
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infoware.PDF.EmbeddedFonts", "Infoware.PDF.EmbeddedFonts\Infoware.PDF.EmbeddedFonts.csproj", "{AD797436-506E-4363-854D-EFB79CCD6DE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infoware.PdfSharpCore", "Infoware.PdfSharpCore\Infoware.PdfSharpCore.csproj", "{83F680EC-4CA9-76BD-C38B-ACAD2F95378F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{AD797436-506E-4363-854D-EFB79CCD6DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD797436-506E-4363-854D-EFB79CCD6DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD797436-506E-4363-854D-EFB79CCD6DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F680EC-4CA9-76BD-C38B-ACAD2F95378F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F680EC-4CA9-76BD-C38B-ACAD2F95378F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F680EC-4CA9-76BD-C38B-ACAD2F95378F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F680EC-4CA9-76BD-C38B-ACAD2F95378F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

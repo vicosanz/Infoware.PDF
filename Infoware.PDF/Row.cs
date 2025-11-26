@@ -1,131 +1,109 @@
 ﻿using Infoware.PDF.Helpers;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Drawing.Layout;
-using System;
 using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace Infoware.PDF
+namespace Infoware.PDF;
+
+public class Row(IGenerator generator, Table table, double X, double Y, double height, bool autoHeight)
 {
-    public class Row
+    private int _cellIndex = -1;
+    private readonly List<CellData> cells = [];
+
+    public double Height => height;
+
+    public void AddCell(string text, XParagraphAlignment alignment = XParagraphAlignment.Center)
     {
-        private readonly IGenerator _generator;
-        private readonly Table _table;
-        private double _x;
-        private readonly double _y;
-        private double _height;
-        private readonly int _rowIndex;
-        private int _cellIndex = -1;
-        private bool _autoHeight = false;
-
-        private List<CellData> cells = new();
-
-        public double Height => _height;
-
-        public Row(IGenerator generator, Table table, int rowIndex, double X, double Y, double height, bool autoHeight)
+        _cellIndex++;
+        double width = table.ColumnsWidth[_cellIndex];
+        if (autoHeight)
         {
-            _generator = generator;
-            _table = table;
-            _x = X;
-            _y = Y;
-            _height = height;
-            _rowIndex = rowIndex;
-            _autoHeight = autoHeight;
+            generator.GetTextHeight(text, width - 4, out double textHeight);
+            if (textHeight > Height)
+            {
+                height = textHeight;
+            }
         }
-
-        public void AddCell(string text, XParagraphAlignment alignment = XParagraphAlignment.Center)
+        if (autoHeight)
         {
-            _cellIndex++;
-            double width = _table.ColumnsWidth[_cellIndex];
-            if (_autoHeight)
+            cells.Add(new CellData()
             {
-                _generator.GetTextHeight(text, width - 4, out double textHeight);
-                if (textHeight > Height)
-                {
-                    _height = textHeight;
-                }
-            }
-            if (_autoHeight)
-            {
-                cells.Add(new CellData()
-                {
-                    Text = text,
-                    Alignment = alignment,
-                    X = _x,
-                    Width = width,
-                });
-            }
-            else
-            {
-                if (_table.DrawBorders)
-                {
-                    _generator.Rectangle(new XRect(_x, _y, width, Height));
-                }
-                _generator.WriteInBox(text, alignment, _x + 1, _y + 1, width - 2, Height - 2);
-            }
-            _x += width;
+                Text = text,
+                Alignment = alignment,
+                X = X,
+                Width = width,
+            });
         }
-
-        public void AddCell(decimal? valor)
+        else
         {
-            _cellIndex++;
-            double width = _table.ColumnsWidth[_cellIndex];
-            if (_autoHeight)
+            if (table.DrawBorders)
             {
-                cells.Add(new CellData()
-                {
-                    Text = (valor ?? 0).ToString("0.00"),
-                    Alignment = XParagraphAlignment.Right,
-                    X = _x,
-                    Width = width,
-                });
+                generator.Rectangle(new XRect(X, Y, width, Height));
             }
-            else
-            {
-                if (_table.DrawBorders)
-                {
-                    _generator.Rectangle(new XRect(_x, _y, width, Height));
-                }
-                _generator.WriteInBox(valor ?? 0, _x + 1, _y + 1, width - 2, Height - 2);
-            }
-            _x += width;
+            generator.WriteInBox(text, alignment, X + 1, Y + 1, width - 2, Height - 2);
         }
+        X += width;
+    }
 
-        public void AddCell(int? valor)
+    public void AddCell(decimal? valor)
+    {
+        _cellIndex++;
+        double width = table.ColumnsWidth[_cellIndex];
+        if (autoHeight)
         {
-            _cellIndex++;
-            double width = _table.ColumnsWidth[_cellIndex];
-            if (_autoHeight)
+            cells.Add(new CellData()
             {
-                cells.Add(new CellData()
-                {
-                    Text = (valor ?? 0).ToString(),
-                    Alignment = XParagraphAlignment.Right,
-                    X = _x,
-                    Width = width,
-                });
-            }
-            else
-            {
-                if (_table.DrawBorders)
-                {
-                    _generator.Rectangle(new XRect(_x, _y, width, Height));
-                }
-                _generator.WriteInBox(valor ?? 0, _x + 1, _y + 1, width - 2, Height - 2);
-            }
-            _x += width;
+                Text = (valor ?? 0).ToString("0.00"),
+                Alignment = XParagraphAlignment.Right,
+                X = X,
+                Width = width,
+            });
         }
-
-        public void DrawCells()
+        else
         {
-            foreach(var cell in cells)
+            if (table.DrawBorders)
             {
-                if (_table.DrawBorders)
-                {
-                    _generator.Rectangle(new XRect(cell.X, _generator.PointerY, cell.Width, Height));
-                }
-                _generator.WriteInBox(cell.Text, cell.Alignment, cell.X + 1, _generator.PointerY + 1, cell.Width - 2, Height - 2);
+                generator.Rectangle(new XRect(X, Y, width, Height));
             }
+            generator.WriteInBox(valor ?? 0, X + 1, Y + 1, width - 2, Height - 2);
+        }
+        X += width;
+    }
+
+    public void AddCell(int? valor)
+    {
+        _cellIndex++;
+        double width = table.ColumnsWidth[_cellIndex];
+        if (autoHeight)
+        {
+            cells.Add(new CellData()
+            {
+                Text = (valor ?? 0).ToString(),
+                Alignment = XParagraphAlignment.Right,
+                X = X,
+                Width = width,
+            });
+        }
+        else
+        {
+            if (table.DrawBorders)
+            {
+                generator.Rectangle(new XRect(X, Y, width, Height));
+            }
+            generator.WriteInBox(valor ?? 0, X + 1, Y + 1, width - 2, Height - 2);
+        }
+        X += width;
+    }
+
+    public void DrawCells()
+    {
+        foreach(var cell in cells)
+        {
+            if (table.DrawBorders)
+            {
+                generator.Rectangle(new XRect(cell.X, generator.PointerY, cell.Width, Height));
+            }
+            generator.WriteInBox(cell.Text, cell.Alignment, cell.X + 1, generator.PointerY + 1, cell.Width - 2, Height - 2);
         }
     }
 }

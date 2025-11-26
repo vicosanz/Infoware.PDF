@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infoware.PDF.Barcodes
+namespace Infoware.PDF.Barcodes;
+
+public enum CodeType2
 {
-    public enum CodeType2
-    {
-        Code128
-    }
+    Code128
 }
