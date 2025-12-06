@@ -12,10 +12,23 @@ public class Row(IGenerator generator, Table table, double X, double Y, double h
 
     public double Height => height;
 
-    public void AddCell(string text, XParagraphAlignment alignment = XParagraphAlignment.Center)
+    public void AddCell(string text)
+    {
+        AddCell(text, table.TextFormatter.Alignment);
+    }
+
+    public void AddCell(string text, XParagraphAlignment paragraphAlignment = XParagraphAlignment.Center)
     {
         _cellIndex++;
         double width = table.ColumnsWidth[_cellIndex];
+        CellData cell = new()
+        {
+            Text = text,
+            ParagraphAlignment = paragraphAlignment,
+            VerticalAlignment = table.TextFormatter.VerticalAlignment,
+            X = X,
+            Width = width,
+        };
         if (autoHeight)
         {
             generator.GetTextHeight(text, width - 4, out double textHeight);
@@ -23,49 +36,35 @@ public class Row(IGenerator generator, Table table, double X, double Y, double h
             {
                 height = textHeight;
             }
-        }
-        if (autoHeight)
-        {
-            cells.Add(new CellData()
-            {
-                Text = text,
-                Alignment = alignment,
-                X = X,
-                Width = width,
-            });
+            cells.Add(cell);
         }
         else
         {
-            if (table.DrawBorders)
-            {
-                generator.Rectangle(new XRect(X, Y, width, Height));
-            }
-            generator.WriteInBox(text, alignment, X + 1, Y + 1, width - 2, Height - 2);
+            WriteCell(cell, table.DrawBorders);
         }
         X += width;
     }
 
-    public void AddCell(decimal? valor)
+    public void AddCell(decimal? valor, string format = "0.00")
     {
         _cellIndex++;
         double width = table.ColumnsWidth[_cellIndex];
+        string valorString = (valor ?? 0).ToString(format);
+        CellData cell = new()
+        {
+            Text = valorString,
+            ParagraphAlignment = XParagraphAlignment.Right,
+            VerticalAlignment = table.TextFormatter.VerticalAlignment,
+            X = X,
+            Width = width,
+        };
         if (autoHeight)
         {
-            cells.Add(new CellData()
-            {
-                Text = (valor ?? 0).ToString("0.00"),
-                Alignment = XParagraphAlignment.Right,
-                X = X,
-                Width = width,
-            });
+            cells.Add(cell);
         }
         else
         {
-            if (table.DrawBorders)
-            {
-                generator.Rectangle(new XRect(X, Y, width, Height));
-            }
-            generator.WriteInBox(valor ?? 0, X + 1, Y + 1, width - 2, Height - 2);
+            WriteCell(cell, table.DrawBorders);
         }
         X += width;
     }
@@ -74,23 +73,21 @@ public class Row(IGenerator generator, Table table, double X, double Y, double h
     {
         _cellIndex++;
         double width = table.ColumnsWidth[_cellIndex];
+        CellData cell = new()
+        {
+            Text = (valor ?? 0).ToString(),
+            ParagraphAlignment = XParagraphAlignment.Right,
+            VerticalAlignment = table.TextFormatter.VerticalAlignment,
+            X = X,
+            Width = width,
+        };
         if (autoHeight)
         {
-            cells.Add(new CellData()
-            {
-                Text = (valor ?? 0).ToString(),
-                Alignment = XParagraphAlignment.Right,
-                X = X,
-                Width = width,
-            });
+            cells.Add(cell);
         }
         else
         {
-            if (table.DrawBorders)
-            {
-                generator.Rectangle(new XRect(X, Y, width, Height));
-            }
-            generator.WriteInBox(valor ?? 0, X + 1, Y + 1, width - 2, Height - 2);
+            WriteCell(cell, table.DrawBorders);
         }
         X += width;
     }
@@ -99,11 +96,16 @@ public class Row(IGenerator generator, Table table, double X, double Y, double h
     {
         foreach(var cell in cells)
         {
-            if (table.DrawBorders)
-            {
-                generator.Rectangle(new XRect(cell.X, generator.PointerY, cell.Width, Height));
-            }
-            generator.WriteInBox(cell.Text, cell.Alignment, cell.X + 1, generator.PointerY + 1, cell.Width - 2, Height - 2);
+            WriteCell(cell, table.DrawBorders);
         }
+    }
+
+    private IGenerator WriteCell(CellData cell, bool drawBorders)
+    {
+        if (drawBorders)
+        {
+            generator.Rectangle(new XRect(cell.X, Y, cell.Width, Height));
+        }
+        return generator.WriteInBox(cell.Text, cell.ParagraphAlignment, cell.VerticalAlignment, cell.X + 1, Y + 1, cell.Width - 2, Height - 2);
     }
 }

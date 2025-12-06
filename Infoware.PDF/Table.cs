@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using PdfSharpCore.Drawing.Layout;
+using PdfSharpCore.Drawing.Layout.enums;
+using System.Collections.Generic;
 
 namespace Infoware.PDF;
 
@@ -15,12 +17,27 @@ public class Table
 
     public Row CurrentRow { get; set; }
 
-    public Table(IGenerator generator, double x, double y, List<double> columnsWidth)
+    public XTextFormatter TextFormatter { get; internal set; }
+
+    public Table(IGenerator generator, double x, double y, List<double> columnsWidth, 
+        XParagraphAlignment paragraphAlignment = XParagraphAlignment.Center, XVerticalAlignment verticalAlignment = XVerticalAlignment.Top)
     {
         _generator = generator;
         _x = x;
         generator.PointerY = y;
         ColumnsWidth = columnsWidth;
+        TextFormatter = new XTextFormatter(_generator.Draw)
+        {
+            Alignment = paragraphAlignment,
+            VerticalAlignment = verticalAlignment
+        };
+    }
+
+    public IGenerator WithFormat(XParagraphAlignment paragraphAlignment, XVerticalAlignment verticalAlignment)
+    {
+        TextFormatter.Alignment = paragraphAlignment;
+        TextFormatter.VerticalAlignment = verticalAlignment;
+        return _generator;
     }
 
     public IGenerator AddRow(double? height)

@@ -1,5 +1,6 @@
 ﻿using PdfSharpCore.Drawing;
 using PdfSharpCore.Drawing.Layout;
+using PdfSharpCore.Drawing.Layout.enums;
 using System.Linq;
 
 namespace Infoware.PDF.Helpers
@@ -89,13 +90,39 @@ namespace Infoware.PDF.Helpers
         /// <param name="width">Box width</param>
         /// <param name="height">Box height</param>
         /// <returns>The generator</returns>
-        public static IGenerator WriteInBox(this IGenerator generator, string text, XParagraphAlignment alignment, double x, double y, double width, double height)
+        public static IGenerator WriteInBox(this IGenerator generator, string text, double x, double y, double width, double height)
         {
             if (generator.Expression)
             {
                 var formatter = new XTextFormatter(generator.Draw)
                 {
-                    Alignment = alignment
+                    Alignment = XParagraphAlignment.Center,
+                    VerticalAlignment = XVerticalAlignment.Top
+                };
+                formatter.DrawString(text ?? "", generator.CurrentStyle.Font, generator.CurrentStyle.Brush,
+                    new XRect(x, y, width, height));
+            }
+            return generator;
+        }
+
+        /// <summary>
+        /// Write String using the current Style
+        /// </summary>
+        /// <param name="generator">The generator</param>
+        /// <param name="text">Text to write</param>
+        /// <param name="x">X position</param>
+        /// <param name="y">Y position</param>
+        /// <param name="width">Box width</param>
+        /// <param name="height">Box height</param>
+        /// <returns>The generator</returns>
+        public static IGenerator WriteInBox(this IGenerator generator, string text, XParagraphAlignment paragraphAlignment, XVerticalAlignment verticalAlignment, double x, double y, double width, double height)
+        {
+            if (generator.Expression)
+            {
+                var formatter = new XTextFormatter(generator.Draw)
+                {
+                    Alignment = paragraphAlignment,
+                    VerticalAlignment = verticalAlignment
                 };
                 formatter.DrawString(text ?? "", generator.CurrentStyle.Font, generator.CurrentStyle.Brush,
                     new XRect(x, y, width, height));

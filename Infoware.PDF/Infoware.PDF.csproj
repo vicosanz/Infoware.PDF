@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+      <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>PdfSharpCore Fluent Wrapper</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/vicosanz/Infoware.PDF</RepositoryUrl>
     <Authors>Victor Sanchez</Authors>
     <Company>Infoware Soluciones</Company>
-    <Version>1.0.17</Version>
+    <Version>1.0.18</Version>
     <PackageReleaseNotes>Added Draw Image from stream</PackageReleaseNotes>
   </PropertyGroup>
 

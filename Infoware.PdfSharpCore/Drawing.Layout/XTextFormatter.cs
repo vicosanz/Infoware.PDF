@@ -142,7 +142,7 @@ namespace PdfSharpCore.Drawing.Layout
         {
             DrawString(text, font, brush, layoutRectangle, new TextFormatAlignment()
             {
-                Horizontal = XParagraphAlignment.Justify, Vertical = XVerticalAlignment.Top
+                Horizontal = Alignment, Vertical = VerticalAlignment
             }, lineHeight);
         }
 
@@ -228,7 +228,7 @@ namespace PdfSharpCore.Drawing.Layout
                 }
                 else
                 {
-                    var lineText = string.Join(" ", lineBlocks.Select(l => l.Text));
+                    var lineText = string.Join(" ", lineBlocks.Select(l => l.Text)).TrimEnd();
                     var locationX = dx;
                     if (Alignment == XParagraphAlignment.Center)
                         locationX = dx + layoutRectangle.Width / 2;
